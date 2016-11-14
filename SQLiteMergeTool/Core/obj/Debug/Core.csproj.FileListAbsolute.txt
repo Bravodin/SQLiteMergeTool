@@ -1,0 +1,14 @@
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\Core.dll.config
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\Core.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\Core.pdb
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\EntityFramework.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\System.Data.SQLite.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\EntityFramework.xml
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\bin\Debug\System.Data.SQLite.xml
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\obj\Debug\Core.dll
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\obj\Debug\Core.pdb
+C:\Users\manuel.candia\Source\Repos\SQLiteMergeTool\SQLiteMergeTool\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
