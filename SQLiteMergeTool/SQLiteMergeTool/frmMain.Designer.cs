@@ -29,27 +29,30 @@
         private void InitializeComponent()
         {
             this.grpLeft = new System.Windows.Forms.GroupBox();
+            this.chkSelectAllLeft = new System.Windows.Forms.CheckBox();
             this.btnLoadLeftDatabase = new System.Windows.Forms.Button();
             this.lstLeftTable = new System.Windows.Forms.CheckedListBox();
             this.btnLeftDialog = new System.Windows.Forms.Button();
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.grpRight = new System.Windows.Forms.GroupBox();
+            this.chkSelectAllRight = new System.Windows.Forms.CheckBox();
             this.btnLoadRightDatabase = new System.Windows.Forms.Button();
             this.lstRightTable = new System.Windows.Forms.CheckedListBox();
             this.btnRightDialog = new System.Windows.Forms.Button();
             this.txtRight = new System.Windows.Forms.TextBox();
             this.btnSendLeftToRight = new System.Windows.Forms.Button();
             this.btnSendRightToLeft = new System.Windows.Forms.Button();
-            this.chkSelectAllLeft = new System.Windows.Forms.CheckBox();
-            this.chkSelectAllRight = new System.Windows.Forms.CheckBox();
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblTabela = new System.Windows.Forms.Label();
+            this.txtSearchLeft = new System.Windows.Forms.TextBox();
+            this.txtSearchRight = new System.Windows.Forms.TextBox();
             this.grpLeft.SuspendLayout();
             this.grpRight.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpLeft
             // 
+            this.grpLeft.Controls.Add(this.txtSearchLeft);
             this.grpLeft.Controls.Add(this.chkSelectAllLeft);
             this.grpLeft.Controls.Add(this.btnLoadLeftDatabase);
             this.grpLeft.Controls.Add(this.lstLeftTable);
@@ -61,6 +64,17 @@
             this.grpLeft.TabIndex = 0;
             this.grpLeft.TabStop = false;
             this.grpLeft.Text = "Database 1";
+            // 
+            // chkSelectAllLeft
+            // 
+            this.chkSelectAllLeft.AutoSize = true;
+            this.chkSelectAllLeft.Location = new System.Drawing.Point(9, 71);
+            this.chkSelectAllLeft.Name = "chkSelectAllLeft";
+            this.chkSelectAllLeft.Size = new System.Drawing.Size(70, 17);
+            this.chkSelectAllLeft.TabIndex = 4;
+            this.chkSelectAllLeft.Text = "Select All";
+            this.chkSelectAllLeft.UseVisualStyleBackColor = true;
+            this.chkSelectAllLeft.CheckedChanged += new System.EventHandler(this.chkSelectAllLeft_CheckedChanged);
             // 
             // btnLoadLeftDatabase
             // 
@@ -75,9 +89,9 @@
             // lstLeftTable
             // 
             this.lstLeftTable.FormattingEnabled = true;
-            this.lstLeftTable.Location = new System.Drawing.Point(6, 90);
+            this.lstLeftTable.Location = new System.Drawing.Point(6, 120);
             this.lstLeftTable.Name = "lstLeftTable";
-            this.lstLeftTable.Size = new System.Drawing.Size(308, 334);
+            this.lstLeftTable.Size = new System.Drawing.Size(308, 304);
             this.lstLeftTable.TabIndex = 2;
             // 
             // btnLeftDialog
@@ -99,6 +113,7 @@
             // 
             // grpRight
             // 
+            this.grpRight.Controls.Add(this.txtSearchRight);
             this.grpRight.Controls.Add(this.chkSelectAllRight);
             this.grpRight.Controls.Add(this.btnLoadRightDatabase);
             this.grpRight.Controls.Add(this.lstRightTable);
@@ -110,6 +125,17 @@
             this.grpRight.TabIndex = 1;
             this.grpRight.TabStop = false;
             this.grpRight.Text = "Database 2";
+            // 
+            // chkSelectAllRight
+            // 
+            this.chkSelectAllRight.AutoSize = true;
+            this.chkSelectAllRight.Location = new System.Drawing.Point(9, 71);
+            this.chkSelectAllRight.Name = "chkSelectAllRight";
+            this.chkSelectAllRight.Size = new System.Drawing.Size(70, 17);
+            this.chkSelectAllRight.TabIndex = 6;
+            this.chkSelectAllRight.Text = "Select All";
+            this.chkSelectAllRight.UseVisualStyleBackColor = true;
+            this.chkSelectAllRight.CheckedChanged += new System.EventHandler(this.chkSelectAllRight_CheckedChanged);
             // 
             // btnLoadRightDatabase
             // 
@@ -124,9 +150,9 @@
             // lstRightTable
             // 
             this.lstRightTable.FormattingEnabled = true;
-            this.lstRightTable.Location = new System.Drawing.Point(6, 90);
+            this.lstRightTable.Location = new System.Drawing.Point(6, 120);
             this.lstRightTable.Name = "lstRightTable";
-            this.lstRightTable.Size = new System.Drawing.Size(308, 334);
+            this.lstRightTable.Size = new System.Drawing.Size(308, 304);
             this.lstRightTable.TabIndex = 4;
             // 
             // btnRightDialog
@@ -166,28 +192,6 @@
             this.btnSendRightToLeft.UseVisualStyleBackColor = true;
             this.btnSendRightToLeft.Click += new System.EventHandler(this.btnSendRightToLeft_Click);
             // 
-            // chkSelectAllLeft
-            // 
-            this.chkSelectAllLeft.AutoSize = true;
-            this.chkSelectAllLeft.Location = new System.Drawing.Point(9, 71);
-            this.chkSelectAllLeft.Name = "chkSelectAllLeft";
-            this.chkSelectAllLeft.Size = new System.Drawing.Size(70, 17);
-            this.chkSelectAllLeft.TabIndex = 4;
-            this.chkSelectAllLeft.Text = "Select All";
-            this.chkSelectAllLeft.UseVisualStyleBackColor = true;
-            this.chkSelectAllLeft.CheckedChanged += new System.EventHandler(this.chkSelectAllLeft_CheckedChanged);
-            // 
-            // chkSelectAllRight
-            // 
-            this.chkSelectAllRight.AutoSize = true;
-            this.chkSelectAllRight.Location = new System.Drawing.Point(9, 71);
-            this.chkSelectAllRight.Name = "chkSelectAllRight";
-            this.chkSelectAllRight.Size = new System.Drawing.Size(70, 17);
-            this.chkSelectAllRight.TabIndex = 6;
-            this.chkSelectAllRight.Text = "Select All";
-            this.chkSelectAllRight.UseVisualStyleBackColor = true;
-            this.chkSelectAllRight.CheckedChanged += new System.EventHandler(this.chkSelectAllRight_CheckedChanged);
-            // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
@@ -209,6 +213,22 @@
             this.lblTabela.Size = new System.Drawing.Size(46, 13);
             this.lblTabela.TabIndex = 7;
             this.lblTabela.Text = "Tabela";
+            // 
+            // txtSearchLeft
+            // 
+            this.txtSearchLeft.Location = new System.Drawing.Point(6, 94);
+            this.txtSearchLeft.Name = "txtSearchLeft";
+            this.txtSearchLeft.Size = new System.Drawing.Size(308, 20);
+            this.txtSearchLeft.TabIndex = 5;
+            this.txtSearchLeft.TextChanged += new System.EventHandler(this.txtSearchLeft_TextChanged);
+            // 
+            // txtSearchRight
+            // 
+            this.txtSearchRight.Location = new System.Drawing.Point(6, 94);
+            this.txtSearchRight.Name = "txtSearchRight";
+            this.txtSearchRight.Size = new System.Drawing.Size(308, 20);
+            this.txtSearchRight.TabIndex = 7;
+            this.txtSearchRight.TextChanged += new System.EventHandler(this.txtSearchRight_TextChanged);
             // 
             // frmMain
             // 
@@ -251,6 +271,8 @@
         private System.Windows.Forms.CheckBox chkSelectAllRight;
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.Label lblTabela;
+        private System.Windows.Forms.TextBox txtSearchLeft;
+        private System.Windows.Forms.TextBox txtSearchRight;
     }
 }
 

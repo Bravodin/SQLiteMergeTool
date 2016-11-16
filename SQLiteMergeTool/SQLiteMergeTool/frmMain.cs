@@ -12,6 +12,9 @@ namespace SQLiteMergeTool
 {
     public partial class frmMain : Form
     {
+        List<String> _leftTables = new List<String>();
+        List<String> _rightTables = new List<String>();
+
         Core.Functions funct = new Core.Functions();
         public frmMain()
         {
@@ -44,7 +47,11 @@ namespace SQLiteMergeTool
         {
             if (txtLeft.Text != "")
             {
-                foreach (var x in funct.LoadDataBaseTables(txtLeft.Text).OrderBy(f => f))
+                txtSearchLeft.Text = "";
+
+                _leftTables = funct.LoadDataBaseTables(txtLeft.Text).OrderBy(f => f).ToList();
+
+                foreach (var x in _leftTables)
                     lstLeftTable.Items.Add(x);
             }
         }
@@ -53,7 +60,11 @@ namespace SQLiteMergeTool
         {
             if (txtRight.Text != "")
             {
-                foreach (var x in funct.LoadDataBaseTables(txtRight.Text).OrderBy(f => f))
+                txtSearchRight.Text = "";
+
+                _rightTables = funct.LoadDataBaseTables(txtRight.Text).OrderBy(f => f).ToList();
+
+                foreach (var x in _rightTables)
                     lstRightTable.Items.Add(x);
             }
         }
@@ -76,17 +87,24 @@ namespace SQLiteMergeTool
 
         public void TransferLeftTable()
         {
-            funct.InsertProgress += Funct_InsertProgress;
-
-            foreach (var x in lstLeftTable.SelectedItems)
+            try
             {
-                lblTabela.Text = x.ToString();
-                funct.TransferTable(txtLeft.Text, txtRight.Text, x.ToString());
+                funct.InsertProgress += Funct_InsertProgress;
+
+                foreach (var x in lstLeftTable.SelectedItems)
+                {
+                    lblTabela.Text = x.ToString();
+                    funct.TransferTable(txtLeft.Text, txtRight.Text, x.ToString());
+                }
+
+                for (int i = 0; i < lstLeftTable.Items.Count; i++)
+                {
+                    lstLeftTable.SetItemChecked(i, false);
+                }
             }
-
-            for (int i = 0; i < lstLeftTable.Items.Count; i++)
+            catch (Exception ex )
             {
-                lstLeftTable.SetItemChecked(i, false);
+                MessageBox.Show(ex.Message);
             }
 
             btnLeftDialog.Enabled = true;
@@ -95,17 +113,24 @@ namespace SQLiteMergeTool
 
         public void TransferRightTable()
         {
-            funct.InsertProgress += Funct_InsertProgress;
-
-            foreach (var x in lstRightTable.SelectedItems)
+            try
             {
-                lblTabela.Text = x.ToString();
-                funct.TransferTable(txtRight.Text, txtLeft.Text, x.ToString());
+                funct.InsertProgress += Funct_InsertProgress;
+
+                foreach (var x in lstRightTable.SelectedItems)
+                {
+                    lblTabela.Text = x.ToString();
+                    funct.TransferTable(txtRight.Text, txtLeft.Text, x.ToString());
+                }
+
+                for (int i = 0; i < lstRightTable.Items.Count; i++)
+                {
+                    lstRightTable.SetItemChecked(i, false);
+                }
             }
-
-            for (int i = 0; i < lstRightTable.Items.Count; i++)
+            catch (Exception ex)
             {
-                lstRightTable.SetItemChecked(i, false);
+                MessageBox.Show(ex.Message);
             }
 
             btnLeftDialog.Enabled = true;
@@ -127,6 +152,26 @@ namespace SQLiteMergeTool
         private void btnSendRightToLeft_Click(object sender, EventArgs e)
         {
             new System.Threading.Thread(TransferRightTable).Start();
+        }
+
+        private void txtSearchLeft_TextChanged(object sender, EventArgs e)
+        {
+            if (_leftTables.Count > 0)
+            {
+                lstLeftTable.Items.Clear();
+                foreach (var x in _leftTables.Where(f=>f.StartsWith(txtSearchLeft.Text)))
+                    lstLeftTable.Items.Add(x);
+            }
+        }
+
+        private void txtSearchRight_TextChanged(object sender, EventArgs e)
+        {
+            if (_rightTables.Count > 0)
+            {
+                lstRightTable.Items.Clear();
+                foreach (var x in _rightTables.Where(f => f.StartsWith(txtSearchRight.Text)))
+                    lstRightTable.Items.Add(x);
+            }
         }
     }
 }
