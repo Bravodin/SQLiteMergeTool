@@ -96,8 +96,10 @@ namespace Core
                         if (x.GetType() != typeof(System.DBNull))
                         {
                             var tipo = dt1.Columns[col].DataType.FullName;
-                            if (tipo == "System.String" || tipo == "System.DateTime") 
+                            if (tipo == "System.String") 
                                 val += $"'{x.ToString().Replace("'","''")}',";
+                            else if (tipo == "System.DateTime")
+                                val += $"'{((DateTime)x).ToString("yyyy-MM-dd HH:mm:ss")}',";
                             else if(tipo == "System.Boolean")
                                 val += $"{(x.ToString() == "True" ? 1 : 0)},";
                             else if (tipo == "System.Decimal")
