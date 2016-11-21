@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,13 +16,18 @@ namespace SQLiteMergeTool
         List<String> _leftTables = new List<String>();
         List<String> _rightTables = new List<String>();
 
+        public static ListBoxLog listBoxLog;
+
         Core.Functions funct = new Core.Functions();
         public frmMain()
         {
             InitializeComponent();
             frmMain.CheckForIllegalCrossThreadCalls = false;
-        }
 
+            listBoxLog = new ListBoxLog(listBox1);
+            
+        }
+        
         private void OpenDialog(TextBox target)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -93,8 +99,16 @@ namespace SQLiteMergeTool
 
                 foreach (var x in lstLeftTable.SelectedItems)
                 {
+                    DateTime start = DateTime.Now;
+
+                    listBoxLog.Log(Level.Info, $"COPY OF {x} INITIALIZED.");
+
                     lblTabela.Text = x.ToString();
-                    funct.TransferTable(txtLeft.Text, txtRight.Text, x.ToString());
+                    funct.TransferTable(txtLeft.Text, txtRight.Text, x.ToString(), rdoReplaceData.Checked ? Core.Functions.TransferType.Replace : Core.Functions.TransferType.Union);
+
+                    DateTime end = DateTime.Now;
+
+                    listBoxLog.Log(Level.Info, $"COPY OF {x} END IN {(end - start).TotalSeconds} SECONDS.");
                 }
 
                 for (int i = 0; i < lstLeftTable.Items.Count; i++)
@@ -105,6 +119,7 @@ namespace SQLiteMergeTool
             catch (Exception ex )
             {
                 MessageBox.Show(ex.Message);
+                listBoxLog.Log(Level.Error, $"ERROR: {ex.Message}");
             }
 
             btnLeftDialog.Enabled = true;
@@ -119,8 +134,16 @@ namespace SQLiteMergeTool
 
                 foreach (var x in lstRightTable.SelectedItems)
                 {
+                    DateTime start = DateTime.Now;
+
+                    listBoxLog.Log(Level.Info, $"COPY OF {x} INITIALIZED.");
+
                     lblTabela.Text = x.ToString();
-                    funct.TransferTable(txtRight.Text, txtLeft.Text, x.ToString());
+                    funct.TransferTable(txtRight.Text, txtLeft.Text, x.ToString(), rdoReplaceData.Checked ? Core.Functions.TransferType.Replace : Core.Functions.TransferType.Union);
+
+                    DateTime end = DateTime.Now;
+
+                    listBoxLog.Log(Level.Info, $"COPY OF {x} END IN {(end - start).TotalSeconds} SECONDS.");
                 }
 
                 for (int i = 0; i < lstRightTable.Items.Count; i++)
@@ -131,6 +154,7 @@ namespace SQLiteMergeTool
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                listBoxLog.Log(Level.Error, $"ERROR: {ex.Message}");
             }
 
             btnLeftDialog.Enabled = true;
@@ -172,6 +196,59 @@ namespace SQLiteMergeTool
                 foreach (var x in _rightTables.Where(f => f.StartsWith(txtSearchRight.Text)))
                     lstRightTable.Items.Add(x);
             }
+        }
+
+        private void btnRunCustomScriptsLeft_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRunCustomScriptsLeft.Enabled = false;
+                listBoxLog.Log(Level.Info, $"Custom scripts on {txtLeft.Text} INITIALIZED");
+                
+                funct.RunCustomScripts(txtLeft.Text);
+
+                btnLoadLeftDatabase.PerformClick();
+
+                listBoxLog.Log(Level.Info, $"Custom scripts on {txtLeft.Text} FINISH");
+            }
+            catch (Exception ex)
+            {
+                listBoxLog.Log(Level.Error, $"ERROR: {ex.Message}");
+            }
+            finally
+            {
+                btnRunCustomScriptsLeft.Enabled = true;
+            }
+            
+        }
+
+        private void btnRunCustomScriptsRight_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnRunCustomScriptsRight.Enabled = false;
+                listBoxLog.Log(Level.Info, $"Custom scripts on {txtRight.Text} INITIALIZED");
+
+                funct.RunCustomScripts(txtRight.Text);
+
+                btnLoadRightDatabase.PerformClick();
+
+                listBoxLog.Log(Level.Info, $"Custom scripts on {txtRight.Text} FINISH");
+
+            }
+            catch (Exception ex)
+            {
+                listBoxLog.Log(Level.Error, $"ERROR: {ex.Message}");
+            }
+            finally
+            {
+                btnRunCustomScriptsRight.Enabled = true;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
         }
     }
 }
