@@ -97,7 +97,7 @@ namespace SQLiteMergeTool
             {
                 funct.InsertProgress += Funct_InsertProgress;
 
-                foreach (var x in lstLeftTable.SelectedItems)
+                foreach (var x in lstLeftTable.CheckedItems)
                 {
                     DateTime start = DateTime.Now;
 
@@ -132,7 +132,7 @@ namespace SQLiteMergeTool
             {
                 funct.InsertProgress += Funct_InsertProgress;
 
-                foreach (var x in lstRightTable.SelectedItems)
+                foreach (var x in lstRightTable.CheckedItems)
                 {
                     DateTime start = DateTime.Now;
 
@@ -175,6 +175,8 @@ namespace SQLiteMergeTool
 
         private void btnSendRightToLeft_Click(object sender, EventArgs e)
         {
+            btnLeftDialog.Enabled = false;
+            btnRightDialog.Enabled = false;
             new System.Threading.Thread(TransferRightTable).Start();
         }
 
