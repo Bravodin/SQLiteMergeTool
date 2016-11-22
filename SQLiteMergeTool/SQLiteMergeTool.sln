@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMergeTool", "SQLiteMe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F3EABAE8-EF0F-45AD-892D-751545DF0684}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteMergeToolStudio", "SQLiteMergeToolStudio\SQLiteMergeToolStudio.csproj", "{5B15791F-8849-4AC7-8AB5-80A6477A2079}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{F3EABAE8-EF0F-45AD-892D-751545DF0684}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3EABAE8-EF0F-45AD-892D-751545DF0684}.Release|x86.ActiveCfg = Release|x86
 		{F3EABAE8-EF0F-45AD-892D-751545DF0684}.Release|x86.Build.0 = Release|x86
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Debug|x86.Build.0 = Debug|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B15791F-8849-4AC7-8AB5-80A6477A2079}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

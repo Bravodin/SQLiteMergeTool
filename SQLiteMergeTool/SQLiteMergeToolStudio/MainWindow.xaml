@@ -1,0 +1,91 @@
+﻿<Controls:MetroWindow  x:Class="SQLiteMergeToolStudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:SQLiteMergeToolStudio"
+        mc:Ignorable="d"
+        Title="SQLite Merge Tool Studio">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Select New Databases"/>
+                    <MenuItem Header="_Exit Application"/>
+                </MenuItem>
+            </Menu>
+            <Grid >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="70*"  />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30*" />
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="Gray" BorderThickness="2" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+
+                <GridSplitter ResizeDirection="Columns"  Grid.Column="1" Grid.RowSpan="3" Width="3" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"/>
+
+                <GridSplitter ResizeDirection="Rows"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Width="Auto" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"/>
+
+                <Grid Grid.Column="0" Grid.RowSpan="3" Grid.Row="0" HorizontalAlignment="Stretch">
+                    <Border BorderBrush="Gray" HorizontalAlignment="Stretch">
+                        <AdornerDecorator>
+                            <Grid x:Name="LeftRoot" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Grid.Row="1" Grid.RowSpan="2" />
+                                <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource WindowTitleColorBrush}" Margin="0,0,0,0">
+                                    <Button  HorizontalAlignment="Right">
+                                        <Polygon
+                                              Points="2,2 2,0 0,1"
+                                              Fill="Gray"
+                                              Height="10"
+                                              Width="10"
+                                             Stretch="UniformToFill"
+                                              Stroke="Black"
+                                              StrokeThickness="1" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </AdornerDecorator>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Stretch">
+                    <Border BorderBrush="Gray" HorizontalAlignment="Stretch">
+                        <AdornerDecorator>
+                            <Grid x:Name="BottonRoot" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Grid.Row="2" Grid.RowSpan="3" />
+                                <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource WindowTitleColorBrush}" Margin="0,0,0,0">
+                                    <Button  HorizontalAlignment="Right">
+                                        <Polygon Stretch="Fill"
+                                              Points="0,5 5,0 10,5"
+                                              Fill="Gray"
+                                              Height="10"
+                                              Width="10"
+                                              Stroke="Black"
+                                              StrokeThickness="1" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </AdornerDecorator>
+                    </Border>
+                </Grid>
+
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+</Controls:MetroWindow>
