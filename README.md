@@ -18,4 +18,5 @@ I'm studing another ways to do this faster and how about do a realy a merge, not
 Any contribution are wellcome.
 </br>
 Using package to visual WPF
+</br>
 Install-Package MahApps.Metro
